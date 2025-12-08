@@ -42,7 +42,7 @@ namespace SDStore.API.Controllers
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetItems(CancellationToken ct)
         {
-            var result = await catalog.GetAllItems(ct);
+            var result = await catalog.GetItems(ct);
             switch (result.StatusCode)
             {
                 case HttpStatusCode.OK:

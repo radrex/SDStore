@@ -39,7 +39,7 @@
             };
         }
 
-        public async Task<OperationResult<IEnumerable<Response_Item>>> GetAllItems(CancellationToken ct = default)
+        public async Task<OperationResult<IEnumerable<Response_Item>>> GetItems(CancellationToken ct = default)
         {
             var items = await store.Items
                 .AsNoTracking()

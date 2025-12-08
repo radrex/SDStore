@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using SDStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using SDStore.API.RouteConstraints;
 using SDStore.Services;
 using SDStore.Services.Abstractions;
 
@@ -17,7 +18,11 @@ builder.Services
 
 // TODO: Maybe extract to an extension method and decorate services with ServiceLifetime so we don't manually write them, but loop them with Reflection
 builder.Services.AddScoped<ICatalogService, CatalogService>();
-builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IOrdersService, OrdersService>();
+builder.Services.Configure<RouteOptions>(options =>
+{
+    options.ConstraintMap.Add("email", typeof(EmailRouteConstraint));
+});
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();

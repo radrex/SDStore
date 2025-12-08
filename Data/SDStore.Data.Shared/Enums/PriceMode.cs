@@ -4,13 +4,13 @@
     
     public enum PriceMode
     {
-        [Display(Name = "Unit: item")]
+        [Display(Name = "pc.")]
         PerItem,
         
-        [Display(Name = "Unit: kg.")]
+        [Display(Name = "kg.")]
         PerKg,
         
-        [Display(Name = "Unit: l.")]
+        [Display(Name = "l.")]
         PerLiter,
     }
 }
