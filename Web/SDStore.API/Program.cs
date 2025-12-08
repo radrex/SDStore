@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using SDStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+using SDStore.API.OrderCart;
 using SDStore.API.RouteConstraints;
 using SDStore.Services;
 using SDStore.Services.Abstractions;
@@ -23,6 +24,8 @@ builder.Services.Configure<RouteOptions>(options =>
 {
     options.ConstraintMap.Add("email", typeof(EmailRouteConstraint));
 });
+
+builder.Services.AddHttpClient<ICartOperations, Cart>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();

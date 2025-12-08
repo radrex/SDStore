@@ -12,6 +12,7 @@
     
     public class CatalogService(SDStoreDBContext store) : ICatalogService
     {
+        // TODO: Clear repetition and do validations
         public async Task<OperationResult<Response_Item>> GetItem(int id, CancellationToken ct = default)
         {
             var item = await store.Items

@@ -2,6 +2,7 @@
 {
     using ModelBinders;
     using Services.Abstractions;
+    using Shared.DataTransferObjects.Request;
     using Shared.DataTransferObjects.Response;
     
     using System.Net;
@@ -105,6 +106,20 @@
             }
         }
         
-        
+        [HttpPost(Name = "PlaceOrder")]
+        [ProducesResponseType<Response_OrderDetails>(statusCode: StatusCodes.Status201Created)]
+        [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> PlaceOrder([FromBody] Request_OrderDetails request, CancellationToken ct)
+        {
+            var result = await orders.PlaceOrder(request, ct);
+            switch (result.StatusCode)
+            {
+                case HttpStatusCode.Created:
+                    return CreatedAtRoute("OrderById", new { id = result.Data!.Id }, result.Data);
+                
+                default:
+                    return StatusCode(500);
+            }
+        }
     }
 }
