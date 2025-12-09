@@ -25,6 +25,7 @@ Dev Process thoughts:
 
 TODOs for enhancement of the Web API:
 - Better GlobalErrorHandling implementation. Let's not rely on ApiController to handle 400 responses
+- Validation - maybe we can extract the repeating validation attributes into a custom validation attribute for all the models that use the same validations
 
 - PROCESSING:
   - Paging

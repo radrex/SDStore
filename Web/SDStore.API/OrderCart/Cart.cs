@@ -1,12 +1,11 @@
-﻿using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-
-namespace SDStore.API.OrderCart
+﻿namespace SDStore.API.OrderCart
 {
     using SDStore.Data.Shared.Enums;
     using Shared.DataTransferObjects.Request;
     using Shared.DataTransferObjects.Response;
+    
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
     
     public class Cart : ICartOperations
     {

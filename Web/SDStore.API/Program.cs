@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
-using SDStore.Data;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
+
+using SDStore.Data;
+using SDStore.API.ActionFilters;
 using SDStore.API.OrderCart;
 using SDStore.API.RouteConstraints;
 using SDStore.Services;
@@ -26,6 +28,7 @@ builder.Services.Configure<RouteOptions>(options =>
 });
 
 builder.Services.AddHttpClient<ICartOperations, Cart>();
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();

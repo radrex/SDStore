@@ -16,6 +16,9 @@
         
         public Money Price { get; set; }
         
+        [Required]
+        [EnumDataType(typeof(PriceMode),
+            ErrorMessage = "PriceMode must be one of the following: PerItem, PerKg, PerLiter")]
         public PriceMode PriceMode { get; set; }
         
         #region INVERSE FOREIGN KEY PROPERTIES [FK]

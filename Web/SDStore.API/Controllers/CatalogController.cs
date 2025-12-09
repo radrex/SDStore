@@ -1,5 +1,6 @@
 namespace SDStore.API.Controllers
 {
+    using ActionFilters;
     using Services.Abstractions;
     using Shared.DataTransferObjects.Request;
     using Shared.DataTransferObjects.Response;
@@ -60,6 +61,7 @@ namespace SDStore.API.Controllers
         }
 
         [HttpPost(Name = "CreateItem")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ProducesResponseType<Response_Item>(statusCode: StatusCodes.Status201Created)]
         [ProducesResponseType<Response_Item>(statusCode: StatusCodes.Status409Conflict)]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
@@ -85,6 +87,7 @@ namespace SDStore.API.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ProducesResponseType<Response_Item>(statusCode: StatusCodes.Status201Created)]
         [ProducesResponseType(statusCode: StatusCodes.Status204NoContent)]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]

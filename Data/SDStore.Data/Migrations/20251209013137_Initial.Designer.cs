@@ -12,8 +12,8 @@ using SDStore.Data;
 namespace SDStore.Data.Migrations
 {
     [DbContext(typeof(SDStoreDBContext))]
-    [Migration("20251208003943_DatabaseSeed")]
-    partial class DatabaseSeed
+    [Migration("20251209013137_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,7 +48,13 @@ namespace SDStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Items", t =>
+                        {
+                            t.HasCheckConstraint("CK_Item_PriceMode_AllowedCurrencies", "[PriceMode] IN ('PerItem', 'PerKg', 'PerLiter')");
+                        });
 
                     b.HasData(
                         new
@@ -193,7 +199,10 @@ namespace SDStore.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Orders", t =>
+                        {
+                            t.HasCheckConstraint("CK_Order_Currency_AllowedCurrencies", "[Currency] IN ('BGN', 'EUR', 'USD', 'CAD', 'GBP')");
+                        });
 
                     b.HasData(
                         new
@@ -273,7 +282,12 @@ namespace SDStore.Data.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems");
+                    b.ToTable("OrderItems", t =>
+                        {
+                            t.HasCheckConstraint("CK_OrderItem_Currency_AllowedCurrencies", "[Currency] IN ('BGN', 'EUR', 'USD', 'CAD', 'GBP')");
+
+                            t.HasCheckConstraint("CK_OrderItem_VAT_Percentage_AllowedPercentages", "[VAT_Percentage] >= 0.00 AND [VAT_Percentage] <= 27.00");
+                        });
 
                     b.HasData(
                         new

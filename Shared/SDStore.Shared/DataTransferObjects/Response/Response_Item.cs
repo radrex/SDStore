@@ -7,9 +7,7 @@
     {
         public int Id { get; init; }
         public required string Name { get; init; }
-        
         public Money Price { get; init; }
-
         public PriceMode PriceMode { get; set; }
     }
 }

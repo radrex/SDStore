@@ -25,6 +25,16 @@
                     {
                         Converters = { new JsonStringEnumConverter() }
                     }));
+
+            item.HasIndex(i => i.Name)
+                .IsUnique();
+            
+            item.ToTable(tb =>
+            {
+                tb.HasCheckConstraint(
+                    "CK_Item_PriceMode_AllowedCurrencies",
+                    "[PriceMode] IN ('PerItem', 'PerKg', 'PerLiter')");
+            });
         }
     }
 }

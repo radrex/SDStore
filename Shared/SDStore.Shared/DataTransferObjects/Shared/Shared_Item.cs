@@ -16,7 +16,7 @@
         
         [Required]
         [EnumDataType(typeof(PriceMode),
-            ErrorMessage = "PriceMode must be PerItem, PerKg, or PerLiter")]
+            ErrorMessage = "PriceMode must be one of the following: PerItem, PerKg, PerLiter")]
         public PriceMode PriceMode { get; init; }
     }
 }

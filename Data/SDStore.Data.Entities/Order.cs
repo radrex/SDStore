@@ -35,6 +35,7 @@
         
         // Taken from: https://ihateregex.io/expr/phone/
         [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$")]
+        [Required]
         public required string PhoneNumber { get; set; }
 
         public Currency Currency { get; set; }

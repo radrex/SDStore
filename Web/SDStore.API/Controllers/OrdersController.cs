@@ -1,6 +1,7 @@
 ﻿namespace SDStore.API.Controllers
 {
     using ModelBinders;
+    using ActionFilters;
     using Services.Abstractions;
     using Shared.DataTransferObjects.Request;
     using Shared.DataTransferObjects.Response;
@@ -107,6 +108,7 @@
         }
         
         [HttpPost(Name = "PlaceOrder")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [ProducesResponseType<Response_OrderDetails>(statusCode: StatusCodes.Status201Created)]
         [ProducesResponseType(statusCode: StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PlaceOrder([FromBody] Request_OrderDetails request, CancellationToken ct)
