@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Data\SDStore.Data.Shared\SDStore.Data.Shared.csproj" />
+      <ProjectReference Include="..\..\Shared\SDStore.Shared\SDStore.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
